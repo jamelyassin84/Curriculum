@@ -36,7 +36,7 @@ try {
         $_POST['CourseCode'],
         $_POST['CurriculumDescription'],
         $_POST['EffectiveAY'],
-        $_POST['MajorCode'],
+        $_POST['MajorCode'] == "" ? null :$_POST['MajorCode'],
         $_POST['EffectiveSemester'],
         $_POST['LocationCode'],
         $_POST['Posted'],

@@ -40,6 +40,7 @@ function addCurriculum() {
         isActive: 1,
         Posted: 0
     }
+
     $.post(`/registry/curriculum/curriculum/actions/curriculum/add.php`, curriculum, (message) => {
         if (message.includes('success')) {
             modal_alert('New Curricuum added', "success", 5000)
