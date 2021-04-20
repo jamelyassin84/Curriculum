@@ -18,9 +18,8 @@
             $_GET['LocationCode'],
         ]);
         echo json_encode($statement->fetchAll(PDO::FETCH_ASSOC));
+        return;
     }
-    
-    
     
     $query = "SELECT 
     `CurriculumID`,
