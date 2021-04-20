@@ -2,7 +2,6 @@
 include('../../../../connection.php');
 $index = 0;
 foreach (json_decode($_POST['data']) as $data) {
-
     // fetch pre requisites 
     $query = "SELECT `CourseNumber` from  `_tblcurriculum_subject_prerequisites` where CurriculumSubjectID = ?";
     $statement = $conn->prepare($query);
@@ -87,16 +86,19 @@ foreach (json_decode($_POST['data']) as $data) {
             modal_alert(message, "danger", 2000);
         })
     }
-
-    function lock() {
-        $('.bi-chevron-right #not-posted #lock-curriculum').css('display', 'none')
-        $('.bi-chevron-right #posted').css('display', 'block')
-        $.post('/registry/curriculum/curriculum/components/re-render-curriculum-subjects.php',{data:<?= json_encode($_POST['data']) ?>},(template)=>
-            $('#tbody-curriculum-subjects').html(template)
-       )
-    }
-
-    function unlock() {
-        $('.bi-chevron-right #not-posted #lock-curriculum').css('display', 'block')
-    }
 </script>
+
+<!-- 
+function lock() {
+$('.bi-chevron-right #not-posted #lock-curriculum').css('display', 'none')
+$('.bi-chevron-right #posted').css('display', 'block')
+$.post('/registry/curriculum/curriculum/components/re-render-curriculum-subjects.php', {
+data: <?= json_encode($_POST['data']) ?>
+}, (template) =>
+$('#tbody-curriculum-subjects').html(template)
+)
+}
+
+function unlock() {
+$('.bi-chevron-right #not-posted #lock-curriculum').css('display', 'block')
+} -->

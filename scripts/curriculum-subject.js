@@ -3,6 +3,20 @@ var curriculumSubjects = {
     url: '/registry/curriculum/curriculum/actions/curriculum-subjects/',
 }
 
+var component = "/registry/curriculum/curriculum/components/curriculum-subjects-components/"
+
+yearLevelsArray = [
+    '1st',
+    '2nd',
+    '3rd',
+    '4th',
+]
+
+semestersArray = [
+    '1st',
+    '2nd',
+]
+
 var CurriculumSubjectsID = ""
 var Posted = 0
 
@@ -17,16 +31,22 @@ function getCurriculumSubjects(id, Posted) {
         CurriculumID: id,
         YearLevel: $('#sel-year-level').val(),
         Semester: semester[0],
-    }, (data) => {
-        $.post(`${ curriculumSubjects.component }`, { data: data }, (template) => {
-            $('#tbody-curriculum-subjects').append(template)
-            getSubjects(CurriculumID)
-            CurriculumID = id
-            Posted == 1 ? lock() : unlock()
-            Posted == 1 ? $('#lock-curriculum').css('display', 'none') : $('#lock-curriculum').css('display', 'block')
-        })
+    }, async(data) => {
+        for (let year in yearLevelsArray) {
+            for (let sem in semestersArray) {
+                await $.post(`${component + yearLevelsArray[year]}/${semestersArray[sem]}.php`, { data: data }, (template) => {
+                    $('#tbody-curriculum-subjects').append(template)
+                    CurriculumID = id
+                })
+            }
+        }
+        getSubjects(CurriculumID)
     })
 }
+$('#sel-year-level, #sel-semester-show').change(() => getCurriculumSubjects(id, Posted))
+
+// Posted == 1 ? lock() : unlock()
+// Posted == 1 ? $('#lock-curriculum').css('display', 'none') : $('#lock-curriculum').css('display', 'block')
 
 function addCurriculumSubject(SubjectID, CourseNumber) {
     if (CurriculumID == 0) {
@@ -47,7 +67,7 @@ function addCurriculumSubject(SubjectID, CourseNumber) {
         $.post(`${ curriculumSubjects.url }add.php`, curricumSubjectData, (message) => {
             if (message.includes('success')) {
                 modal_alert('Subject has been successfully posted', "success", 5000)
-                getCurriculumSubjects(CurriculumID)
+                getCurriculumSubjects(CurriculumID, Posted)
                 return
             }
             modal_alert(message, "danger", 5000);
@@ -71,7 +91,7 @@ function confirmDeleteCurriculumSubject(id) {
     $.post(url, { CurriculumSubjectID: id }, (data) => {
         if (data == `success`) {
             modal_alert('Subject successfully deleted on the curriculum', "success", 5000)
-            getCurriculumSubjects(CurriculumID)
+            getCurriculumSubjects(CurriculumID, Posted)
             return
         }
         modal_alert('Remove all data associated with this first', "danger", 2000);

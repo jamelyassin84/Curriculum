@@ -66,67 +66,7 @@
                             </tr>
                         </thead>
                         <tbody id="tbody-curriculum-subjects">
-                            <!-- <tbody>
-                            <tr>
-                                <td colspan="9" class="text-primary">
-                                    <h6 class="mb-0 mt-2">1st Year - 1st Semester </h6>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>ICT110</td>
-                                <td>Introduction to Computing</td>
-                                <td class="text-center">2</td>
-                                <td class="text-center">3</td>
-                                <td class="text-center">3</td>
-                                <td class="text-center"><select class="w-100">
-                                        <option>ITT23</option>
-                                    </select></td>
-                                <td class="text-center"><select class="w-100">
-                                        <option>ITT45</option>
-                                    </select></td>
-                                <td class="text-center">90</td>
-                                <td><i class="bi bi-chevron-right float-end"></i></td>
-                            </tr>
-                            <tr>
-                                <td>ICT110</td>
-                                <td>Introduction to Computing</td>
-                                <td class="text-center">2</td>
-                                <td class="text-center">3</td>
-                                <td class="text-center">3</td>
-                                <td class="text-center" colspan="2">ITT2, IIT3</td>
-                                <td class="text-center">90</td>
-                                <td><i class="bi bi-chevron-right float-end"></i></td>
-                            </tr>
-                            <tr>
-                                <td colspan="9" class="text-primary">
-                                    <h6 class="mb-0 mt-2">1st Year - 2nd Semester </h6>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>ICT110</td>
-                                <td>Introduction to Computing</td>
-                                <td class="text-center">2</td>
-                                <td class="text-center">3</td>
-                                <td class="text-center">3</td>
-                                <td class="text-center"><select class="w-100">
-                                        <option>ITT23</option>
-                                    </select></td>
-                                <td class="text-center"><select class="w-100">
-                                        <option>ITT45</option>
-                                    </select></td>
-                                <td class="text-center">90</td>
-                                <td><i class="bi bi-chevron-right float-end"></i></td>
-                            </tr>
-                            <tr>
-                                <td>ICT110</td>
-                                <td>Introduction to Computing</td>
-                                <td class="text-center">2</td>
-                                <td class="text-center">3</td>
-                                <td class="text-center">3</td>
-                                <td class="text-center" colspan="2">ITT2, IIT3</td>
-                                <td class="text-center">90</td>
-                                <td><i class="bi bi-chevron-right float-end"></i></td>
-                            </tr> -->
+                          
                         </tbody>
                     </table>
             </div>
@@ -223,4 +163,5 @@
 
     <script>
         $('#tbody-curriculum-subjects').html('')
+        
     </script>
