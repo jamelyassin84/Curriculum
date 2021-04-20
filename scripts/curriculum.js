@@ -5,11 +5,21 @@ var curriculum = {
 
 function getCurriculums() {
     $('#tbody-curriculum').html('')
-    $.get(`${ curriculum.url }show.php?CourseCode=${CourseCode}&LocationCode=${$('#cbo-locationcode').val()}`, (data) => {
+    const filter = {
+        MajorCode: $('#sel-majors').val(),
+        CourseCode: CourseCode,
+        LocationCode: $('#cbo-locationcode').val()
+    }
+    $.get(`${ curriculum.url }show.php?`, filter, (data) => {
         $.post(`${ curriculum.component }`, { data: data }, (component) => $('#tbody-curriculum').html(component))
     })
 }
 var tRToHighlight = 0
+
+$('#sel-majors').change(() => {
+    getCurriculums()
+})
+
 
 function addCurriculum() {
     if ($('#txt-curriculum-description').val() == "") {
@@ -22,7 +32,7 @@ function addCurriculum() {
     }
     const curriculum = {
         CourseCode: $('#option-courses').val(),
-        MajorCode: $('#sel-majors').val(),
+        MajorCode: $('#sel-majors').val() == "" ? null : $('#sel-majors').val(),
         CurriculumDescription: $('#txt-curriculum-description').val(),
         EffectiveAY: $('#sel-school-year').val(),
         EffectiveSemester: $('#sel-semester').val(),
