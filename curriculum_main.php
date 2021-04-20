@@ -66,7 +66,7 @@
                             </tr>
                         </thead>
                         <tbody id="tbody-curriculum-subjects">
-                        <!-- <tbody>
+                            <!-- <tbody>
                             <tr>
                                 <td colspan="9" class="text-primary">
                                     <h6 class="mb-0 mt-2">1st Year - 1st Semester </h6>
@@ -220,3 +220,7 @@
     <script src="/registry/curriculum/curriculum/scripts/school-year.js"></script>
     <script src="/registry/curriculum/curriculum/scripts/curriculum.js"></script>
     <script src="/registry/curriculum/curriculum/scripts/majors.js"></script>
+
+    <script>
+        $('#tbody-curriculum-subjects').html('')
+    </script>

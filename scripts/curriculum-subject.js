@@ -4,14 +4,13 @@ var curriculumSubjects = {
 }
 
 var CurriculumSubjectsID = ""
-var CurriculumID = 0
-
 var Posted = 0
 
+var CurriculumID = 0
+
 function getCurriculumSubjects(id, Posted) {
-    Posted == 1 ? Posted = 1 : Posted = 0
-    $('#tbody-curriculum-subjects').html('')
     CurriculumID = id
+    Posted == 1 ? Posted = 1 : Posted = 0
     $.get(`${ curriculumSubjects.url }show.php`, {
         CurriculumID: id,
         YearLevel: $('#sel-year-level').val(),
@@ -19,7 +18,8 @@ function getCurriculumSubjects(id, Posted) {
     }, (data) => {
         $.post(`${ curriculumSubjects.component }`, { data: data }, (template) => {
             $('#tbody-curriculum-subjects').append(template)
-            getSubjects()
+            getSubjects(CurriculumID)
+            CurriculumID = id
         })
     })
 }

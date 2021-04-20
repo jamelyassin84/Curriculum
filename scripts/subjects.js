@@ -3,10 +3,11 @@ var subjects = {
     url: '/registry/curriculum/curriculum/actions/subjects/',
 }
 
-function getSubjects() {
-    if (CurriculumID != 0) {
-        $.get(`${ subjects.url }show.php`, (data) => {
-            $.post(`${ subjects.component }`, { data: data }, (component) => $('#tbody-all-subjects').html(component))
+function getSubjects(CurriculumID) {
+    $('#tbody-curriculum-subjects').html('')
+    $.get(`${ subjects.url }show.php`, (data) => {
+        $.post(`${ subjects.component }`, { data: data }, (component) => {
+            $('#tbody-all-subjects').html(component)
         })
-    }
+    })
 }
