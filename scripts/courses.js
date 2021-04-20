@@ -22,7 +22,6 @@ $(document).ready(() => {
 function reset() {
     CourseCode = $('#option-courses').val()
     $('#sel-majors').html("")
-    $('#tbody-curriculum-subjects').html('')
     getMajors()
     getCurriculums()
 }

@@ -39,7 +39,7 @@ foreach (json_decode($_POST['data']) as $data) {
             <td id="not-posted" class="text-center">
                 <select id="sel-pre-requisites" onchange="addPreRequisite('<?= $data->CurriculumSubjectID ?>')" class="w-100">
                     <option selected disabled>Prerequisite 1</option>
-                    <option> </option>
+                    <!-- <option> </option> -->
                     <?php foreach ($subjects as $requisite) { ?>
                         <option><?= $requisite['CourseNumber'] ?></option>
                     <?php } ?>
@@ -56,7 +56,7 @@ foreach (json_decode($_POST['data']) as $data) {
             <td id="not-posted" class="text-center">
                 <select id="sel-pre-requisites" onchange="addPreRequisite('<?= $data->CurriculumSubjectID ?>')" class="w-100">
                     <option selected disabled>Prerequisite 2</option>
-                    <option> </option>
+                    <!-- <option> </option> -->
                     <?php foreach ($subjects as $requisite) { ?>
                         <option><?= $requisite['CourseNumber'] ?></option>
                     <?php } ?>
