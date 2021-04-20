@@ -1,7 +1,7 @@
     <?php
     include('../../../../../connection.php');
 
-    if ($_GET['Semester'] == "All Semester" && $_GET['YearLevel'] == "All Year Level" ) {
+    if ($_GET['Semester'] == "All" && $_GET['YearLevel'] == "All Year Level" ) {
         $query = "SELECT *from  `_tblcurriculum_subject` where CurriculumID =   ? ";
         $statement = $conn->prepare($query);
         $statement->execute([
@@ -12,7 +12,7 @@
     }
     
     
-    if($_GET['Semester'] == "All Semester"){
+    if($_GET['Semester'] == "All"){
         $query = "SELECT *from  `_tblcurriculum_subject` where CurriculumID = 
         ? and YearLevel = ?  ";
         $statement = $conn->prepare($query);

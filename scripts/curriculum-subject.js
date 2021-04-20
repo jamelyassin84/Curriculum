@@ -22,6 +22,8 @@ function getCurriculumSubjects(id, Posted) {
             $('#tbody-curriculum-subjects').append(template)
             getSubjects(CurriculumID)
             CurriculumID = id
+            Posted == 1 ? lock() : unlock()
+            Posted == 1 ? $('#lock-curriculum').css('display', 'none') : $('#lock-curriculum').css('display', 'block')
         })
     })
 }
@@ -74,20 +76,4 @@ function confirmDeleteCurriculumSubject(id) {
         }
         modal_alert('Remove all data associated with this first', "danger", 2000);
     })
-}
-
-
-function toggleLock() {
-    if (Posted == 1) {
-        alert('ari')
-        $('#posted').css('display', 'block')
-        $('#not-posted').css('display', 'none')
-        $('#lock-curriculum').css('display', 'none')
-        $('.bi-chevron-right').css('display', 'none')
-    } else {
-        $('#posted').css('display', 'none')
-        $('#not-posted').css('display', 'block')
-        $('#lock-curriculum').css('display', 'block')
-        $('.bi-chevron-right').css('display', 'block')
-    }
 }

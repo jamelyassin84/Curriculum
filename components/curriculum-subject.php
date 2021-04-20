@@ -64,9 +64,6 @@ foreach (json_decode($_POST['data']) as $data) {
             </td>
         <?php } ?>
 
-        <td id="posted"><?= isset($pre_requisites[0]['CourseNumber']) ? $pre_requisites[0]['CourseNumber'] : 'N/A' ?></td>
-        <td id="posted"><?= isset($pre_requisites[0]['CourseNumber']) ? $pre_requisites[1]['CourseNumber'] : 'N/A' ?></td>
-
 
         <td class="text-center"><?= $subject->TotalHoursPerSemester ?></td>
         <td><i onclick="deleteCurriculumSubject('<?= $data->CurriculumSubjectID ?>')" class="bi bi-chevron-right float-end"></i></td>
@@ -89,5 +86,17 @@ foreach (json_decode($_POST['data']) as $data) {
             }
             modal_alert(message, "danger", 2000);
         })
+    }
+
+    function lock() {
+        $('.bi-chevron-right #not-posted #lock-curriculum').css('display', 'none')
+        $('.bi-chevron-right #posted').css('display', 'block')
+        $.post('/registry/curriculum/curriculum/components/re-render-curriculum-subjects.php',{data:<?= json_encode($_POST['data']) ?>},(template)=>
+            $('#tbody-curriculum-subjects').html(template)
+       )
+    }
+
+    function unlock() {
+        $('.bi-chevron-right #not-posted #lock-curriculum').css('display', 'block')
     }
 </script>
