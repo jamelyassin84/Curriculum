@@ -29,10 +29,14 @@ function addCurriculumSubject(SubjectID, CourseNumber) {
         modal_alert('Please select curriculum first before adding', "danger", 5000);
         return
     }
+    if ($('#sel-semester-show').val() == "All Semester" || $('#sel-year-level').val() == "All Year Level") {
+        modal_alert('Please specify year level and semester', "danger", 5000);
+        return
+    }
     const curricumSubjectData = {
         CurriculumID: CurriculumID,
         YearLevel: $('#sel-year-level').val(),
-        Semester: $('#sel-semester').val(),
+        Semester: $('#sel-semester-show').val(),
         CourseNumber: CourseNumber,
     }
     $.get(`${ subjects.url }subject.php?SubjectID=${ SubjectID }`, (data) => {

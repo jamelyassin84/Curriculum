@@ -74,7 +74,7 @@ foreach (json_decode($_POST['data']) as $data) {
 <?php $index += 1;
 } ?>
 
-<script src="/registry/curriculum/curriculum/scripts/curriculum-subject.php"></script>
+<script src="/registry/curriculum/curriculum/scripts/curriculum-subject.js"></script>
 
 <script>
     function addPreRequisite(CurriculumSubjectID, CourseNumber) {
