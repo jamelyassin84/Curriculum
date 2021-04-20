@@ -66,7 +66,7 @@
                             </tr>
                         </thead>
                         <tbody id="tbody-curriculum-subjects">
-                          
+
                         </tbody>
                     </table>
             </div>
@@ -163,5 +163,7 @@
 
     <script>
         $('#tbody-curriculum-subjects').html('')
-        
+        $('#sel-year-level, #sel-semester-show').change(() => [
+            getCurriculumSubjects(CurriculumID, Posted)
+        ])
     </script>

@@ -4,6 +4,7 @@ var curriculumSubjects = {
 }
 
 var component = "/registry/curriculum/curriculum/components/curriculum-subjects-components/"
+var lockComponent = "/registry/curriculum/curriculum/components/curriculum-subjects-locks/"
 
 yearLevelsArray = [
     '1st',
@@ -22,31 +23,95 @@ var Posted = 0
 
 var CurriculumID = 0
 
-function getCurriculumSubjects(id, Posted) {
+function getCurriculumSubjects(id, posted) {
+    $('#tbody-curriculum-subjects').html("")
     let semester = $('#sel-semester-show').val().split(" ")
     $('#tbody-curriculum-subjects').html('')
     CurriculumID = id
-    Posted == 1 ? Posted = 1 : Posted = 0
+    posted == 1 ? Posted = 1 : Posted = 0
     $.get(`${ curriculumSubjects.url }show.php`, {
         CurriculumID: id,
         YearLevel: $('#sel-year-level').val(),
         Semester: semester[0],
     }, async(data) => {
-        for (let year in yearLevelsArray) {
-            for (let sem in semestersArray) {
-                await $.post(`${component + yearLevelsArray[year]}/${semestersArray[sem]}.php`, { data: data }, (template) => {
-                    $('#tbody-curriculum-subjects').append(template)
-                    CurriculumID = id
-                })
+        await setYearLevel($('#sel-year-level').val())
+        await setSemester(semester[0])
+        getSubjects(CurriculumID)
+        if (posted != 1) {
+            $('#lock-curriculum').css('display', 'block')
+            for (let year in yearLevelsArray) {
+                for (let sem in semestersArray) {
+                    await $.post(`${component + yearLevelsArray[year]}/${semestersArray[sem]}.php`, { data: data }, (template) => {
+                        $('#tbody-curriculum-subjects').append(template)
+                        CurriculumID = id
+                    })
+                }
+            }
+        } else {
+            $('#lock-curriculum').css('display', 'none')
+            for (let year in yearLevelsArray) {
+                for (let sem in semestersArray) {
+                    await $.post(`${lockComponent + yearLevelsArray[year]}/${semestersArray[sem]}.php`, { data: data }, (template) => {
+                        $('#tbody-curriculum-subjects').append(template)
+                        CurriculumID = id
+                    })
+                }
             }
         }
-        getSubjects(CurriculumID)
     })
 }
-$('#sel-year-level, #sel-semester-show').change(() => getCurriculumSubjects(id, Posted))
 
-// Posted == 1 ? lock() : unlock()
-// Posted == 1 ? $('#lock-curriculum').css('display', 'none') : $('#lock-curriculum').css('display', 'block')
+
+async function setYearLevel(level) {
+    if (level == "First") {
+        yearLevelsArray = [
+            '1st',
+        ]
+    }
+    if (level == "Second") {
+        yearLevelsArray = [
+            '2nd',
+        ]
+    }
+    if (level == "Third") {
+        yearLevelsArray = [
+            '3rd',
+        ]
+    }
+    if (level == "Fourth") {
+        yearLevelsArray = [
+            '4th',
+        ]
+    }
+    if (level == "All Year Level") {
+        yearLevelsArray = [
+            '1st',
+            '2nd',
+            '3rd',
+            '4th',
+        ]
+    }
+}
+
+
+async function setSemester(semester) {
+    if (semester == "First") {
+        semestersArray = [
+            '1st',
+        ]
+    }
+    if (semester == "Second") {
+        semestersArray = [
+            '2nd',
+        ]
+    }
+    if (semester == "All") {
+        semestersArray = [
+            '1st',
+            '2nd',
+        ]
+    }
+}
 
 function addCurriculumSubject(SubjectID, CourseNumber) {
     if (CurriculumID == 0) {
