@@ -11,4 +11,4 @@ if (count(json_decode($_POST['data'])) != 0) {
     <script>
         $('.tr-major-to-hide').css('display', 'none')
     </script>
-<?php } ?>
+<?php } ?> 

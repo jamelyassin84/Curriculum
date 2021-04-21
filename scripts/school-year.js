@@ -6,7 +6,9 @@ var schoolyear = {
 
 function getCSchoolYear() {
     $.get(`${ schoolyear.url }show.php`, (data) => {
-        $.post(`${ schoolyear.component }`, { data: data }, (component) => $('#sel-school-year, #sel-school-year-update').html(component))
+        $.post(`${ schoolyear.component }`, { data: data }, (component) => {
+            $('#sel-school-year, #sel-school-year-update').html(component)
+        })
     })
 }
 

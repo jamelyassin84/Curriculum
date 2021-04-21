@@ -1,6 +1,9 @@
 <?php
     include('../../../../../connection.php');
-
+if(  $_POST['CourseCode'] == ""){
+    echo "Course Code Could not be blank.";
+    return;
+}
 $statement = $conn->prepare(
     "SELECT  `CurriculumID` from  _tblcurriculum 
     where 

@@ -3,21 +3,26 @@ var curriculum = {
     url: '/registry/curriculum/curriculum/actions/curriculum/',
 }
 
-function getCurriculums() {
+async function getCurriculums() {
     $('#tbody-curriculum').html('')
+    $('#tbody-curriculum-subjects').html("")
     const filter = {
         MajorCode: $('#sel-majors').val(),
         CourseCode: CourseCode,
         LocationCode: $('#cbo-locationcode').val()
     }
     $.get(`${ curriculum.url }show.php?`, filter, (data) => {
-        $.post(`${ curriculum.component }`, { data: data }, (component) => $('#tbody-curriculum').html(component))
+        $.post(`${ curriculum.component }`, { data: data }, (component) => {
+            $('#tbody-curriculum-subjects').html("")
+            $('#tbody-curriculum').html(component)
+        })
     })
 }
 var tRToHighlight = 0
 
-$('#sel-majors').change(() => {
-    getCurriculums()
+$('#sel-majors').change(async() => {
+    await getCurriculums()
+
 })
 
 
@@ -29,6 +34,9 @@ function addCurriculum() {
     if ($('#sel-semester').val() == 'All Semester') {
         modal_alert(`Effectivity Semester cannot 'be All Semester'`, "danger", 5000);
         return
+    }
+    if ($('#sel-year-level').val() == "All Year Level") {
+        modal_alert('Error: School Year is All Year Levels', "danger", 5000);
     }
     const curriculum = {
         CourseCode: $('#option-courses').val(),
@@ -53,6 +61,9 @@ function addCurriculum() {
 }
 
 function updateCurriculum(CurriculumID) {
+    if ($('#sel-year-level').val() == "All Year Level") {
+        modal_alert('Error: School Year is All Year Levels', "danger", 5000);
+    }
     const curriculum = {
         CurriculumDescription: $('#txt-curriculum-description-update').val(),
         EffectiveAY: $('#sel-school-year-update').val(),
@@ -118,7 +129,6 @@ function confirmLockCurriculum() {
         if (message.includes('success')) {
             modal_alert('Curriculum successfully locked', "success", 5000)
             getCurriculums()
-            getCurriculumSubjects(CurriculumID)
             return
         }
         modal_alert(message, "danger", 2000);

@@ -26,7 +26,6 @@ var CurriculumID = 0
 function getCurriculumSubjects(id, posted) {
     $('#tbody-curriculum-subjects').html("")
     let semester = $('#sel-semester-show').val().split(" ")
-    $('#tbody-curriculum-subjects').html('')
     CurriculumID = id
     posted == 1 ? Posted = 1 : Posted = 0
     $.get(`${ curriculumSubjects.url }show.php`, {

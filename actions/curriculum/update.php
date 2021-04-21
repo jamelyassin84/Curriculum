@@ -38,5 +38,5 @@
         echo "success";
     } catch (PDOException $e) {
     $conn->rollback();
-        echo "Course Code is already available";
+        echo "Cannot Update Description of this curriculum. Other Users might be confused once it is locked";
  }
