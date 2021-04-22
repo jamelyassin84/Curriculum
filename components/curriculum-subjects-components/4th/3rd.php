@@ -1,6 +1,6 @@
  <tr>
      <td colspan="9" class="text-primary">
-         <h6 class="mb-0 mt-2">2nd Year - 1st Semester </h6>
+         <h6 class="mb-0 mt-2">4th Year - 1st Semester </h6>
      </td>
  </tr>
  <?php
@@ -8,7 +8,7 @@
 
     $index = 0;
     foreach (json_decode($_POST['data']) as $data) {
-        if ($data->YearLevel == "Second" && $data->Semester  == "First") {
+        if ($data->YearLevel == "Fourth" && $data->Semester  == "Third") {
 
             $query = "SELECT `CourseNumber` from  `_tblcurriculum_subject_prerequisites` where CurriculumSubjectID = ?";
             $statement = $conn->prepare($query);

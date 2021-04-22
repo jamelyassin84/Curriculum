@@ -16,6 +16,8 @@ yearLevelsArray = [
 semestersArray = [
     '1st',
     '2nd',
+    '3rd',
+    '4th',
 ]
 
 var CurriculumSubjectsID = ""
@@ -35,24 +37,26 @@ function getCurriculumSubjects(id, posted) {
     }, async(data) => {
         await setYearLevel($('#sel-year-level').val())
         await setSemester(semester[0])
-        getSubjects(CurriculumID)
+        getSubjects(CurriculumID, posted)
         if (posted != 1) {
-            $('#lock-curriculum').css('display', 'block')
             for (let year in yearLevelsArray) {
                 for (let sem in semestersArray) {
                     await $.post(`${component + yearLevelsArray[year]}/${semestersArray[sem]}.php`, { data: data }, (template) => {
                         $('#tbody-curriculum-subjects').append(template)
                         CurriculumID = id
+
                     })
                 }
             }
+
         } else {
-            $('#lock-curriculum').css('display', 'none')
+
             for (let year in yearLevelsArray) {
                 for (let sem in semestersArray) {
                     await $.post(`${lockComponent + yearLevelsArray[year]}/${semestersArray[sem]}.php`, { data: data }, (template) => {
                         $('#tbody-curriculum-subjects').append(template)
                         CurriculumID = id
+
                     })
                 }
             }
@@ -92,7 +96,6 @@ async function setYearLevel(level) {
     }
 }
 
-
 async function setSemester(semester) {
     if (semester == "First") {
         semestersArray = [
@@ -104,10 +107,22 @@ async function setSemester(semester) {
             '2nd',
         ]
     }
+    if (semester == "Third") {
+        semestersArray = [
+            '3rd',
+        ]
+    }
+    if (semester == "Summer") {
+        semestersArray = [
+            '4th',
+        ]
+    }
     if (semester == "All") {
         semestersArray = [
             '1st',
             '2nd',
+            '3rd',
+            '4th',
         ]
     }
 }

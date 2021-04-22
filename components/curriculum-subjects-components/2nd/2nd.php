@@ -92,4 +92,6 @@
              modal_alert(message, "danger", 2000);
          })
      }
+     $('#lock-curriculum').css('display', 'block')
+     $('.bi bi-pencil, .bi bi-trash').css('display', 'block')
  </script>

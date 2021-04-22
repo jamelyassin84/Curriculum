@@ -10,13 +10,13 @@
               <i class="bi <?= $data->Posted == 1 ? 'bi-lock-fill' : ' bi-unlock-fill' ?> "></i>
           </td>
           <td><?= $data->CurriculumDescription ?></td>
-          <td><i data-bs-toggle="modal" data-bs-target="#edit-curriculum" onclick="editCurriculum(
+          <td><i style="display:<?= $data->Posted == 1 ? 'none' : 'block' ?>" data-bs-toggle="modal" data-bs-target="#edit-curriculum" onclick="editCurriculum(
               '<?= $data->CurriculumID ?>',
               '<?= $data->CurriculumDescription ?>',
               '<?= $data->EffectiveAY ?>',
               '<?= $data->EffectiveSemester ?>',
           )" class="bi bi-pencil"></i></td>
-          <td><i onclick="deleteCurriculum(<?= $data->CurriculumID ?>)" class="bi bi-trash"></i></td>
+          <td><i style="display:<?= $data->Posted  == 1 ? 'none' : 'block' ?>" onclick="deleteCurriculum(<?= $data->CurriculumID ?>)" class="bi bi-trash"></i></td>
       </tr>
   <?php $index += 1;
     } ?>
