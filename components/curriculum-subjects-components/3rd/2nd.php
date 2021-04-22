@@ -43,7 +43,7 @@
              <?php }
                 if (!isset($pre_requisites[0]['CourseNumber'])) { ?>
                  <td id="not-posted" class="text-center">
-                     <select id="sel-pre-requisites" onchange="addPreRequisite('<?= $data->CurriculumSubjectID ?>')" class="w-100">
+                     <select id="sel-pre-requisites" onchange="addPreRequisite('<?= $data->CurriculumSubjectID ?>','<?= $requisite['CourseNumber'] ?>')" class="w-100">
                          <option selected disabled>Prerequisite 1</option>
                          <!-- <option> </option> -->
                          <?php foreach ($subjects as $requisite) { ?>
@@ -60,7 +60,7 @@
              <?php }
                 if (!isset($pre_requisites[1]['CourseNumber'])) { ?>
                  <td id="not-posted" class="text-center">
-                     <select id="sel-pre-requisites" onchange="addPreRequisite('<?= $data->CurriculumSubjectID ?>')" class="w-100">
+                     <select id="sel-pre-requisites" onchange="addPreRequisite('<?= $data->CurriculumSubjectID ?>','<?= $requisite['CourseNumber'] ?>')" class="w-100">
                          <option selected disabled>Prerequisite 2</option>
                          <!-- <option> </option> -->
                          <?php foreach ($subjects as $requisite) { ?>
@@ -78,10 +78,11 @@
         }
     } ?>
  <script>
-     function addPreRequisite(CurriculumSubjectID, CourseNumber) {
+     function addPreRequisite(CurriculumSubjectID, index) {
          $.post('/registry/curriculum/curriculum/actions/pre-requisite/add.php', {
              CurriculumSubjectID: CurriculumSubjectID,
-             CourseNumber: $('#sel-pre-requisites').val(),
+             CourseNumber: $(`#sel-pre-requisites${index}`).val(),
+
          }, (message) => {
              if (message == `success`) {
                  modal_alert('Pre requisite added', "success", 5000)

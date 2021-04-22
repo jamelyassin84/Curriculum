@@ -42,8 +42,8 @@ function addCurriculum() {
         CourseCode: $('#option-courses').val(),
         MajorCode: $('#sel-majors').val() == "" ? null : $('#sel-majors').val(),
         CurriculumDescription: $('#txt-curriculum-description').val(),
-        EffectiveAY: $('#sel-school-year').val(),
-        EffectiveSemester: $('#sel-semester').val(),
+        EffectiveAY: 2021 - 2022,
+        EffectiveSemester: 'First',
         LocationCode: $('#cbo-locationcode').val(),
         isActive: 1,
         Posted: 0
@@ -66,8 +66,8 @@ function updateCurriculum(CurriculumID) {
     }
     const curriculum = {
         CurriculumDescription: $('#txt-curriculum-description-update').val(),
-        EffectiveAY: $('#sel-school-year-update').val(),
-        EffectiveSemester: $('#sel-semester-update').val(),
+        EffectiveAY: 2021 - 2022,
+        EffectiveSemester: 'First',
         LocationCode: $('#cbo-locationcode').val(),
         CurriculumID: CurriculumID,
     }

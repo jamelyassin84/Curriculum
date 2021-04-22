@@ -1,14 +1,13 @@
 <?php $index = 0;
-if (count(json_decode($_POST['data'])) != 0) {
-    foreach (json_decode($_POST['data']) as $data) { ?>
-        <option><?= $data->MajorCode ?></option>
+    if (count(json_decode($_POST['data'])) != 0) {
+        foreach (json_decode($_POST['data']) as $data) { ?>
+            <option><?= $data->MajorCode ?></option>
+        <?php $index += 1;} ?>
         <script>
-            $('.tr-major-to-hide').css('display', 'block')
+            $('.hide-major-select').css('display', 'block')
         </script>
-    <?php $index += 1;
-    }
-} else { ?>
+<?php } else { ?>
     <script>
-        $('.tr-major-to-hide').css('display', 'none')
+        $('.hide-major-select').css('display', 'none')
     </script>
-<?php } ?> 
+<?php } ?>

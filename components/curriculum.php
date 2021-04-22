@@ -10,7 +10,6 @@
               <i class="bi <?= $data->Posted == 1 ? 'bi-lock-fill' : ' bi-unlock-fill' ?> "></i>
           </td>
           <td><?= $data->CurriculumDescription ?></td>
-          <td><?= $data->EffectiveAY ?><br><?= $data->EffectiveSemester ?> Semester</td>
           <td><i data-bs-toggle="modal" data-bs-target="#edit-curriculum" onclick="editCurriculum(
               '<?= $data->CurriculumID ?>',
               '<?= $data->CurriculumDescription ?>',

@@ -9,5 +9,6 @@ foreach (json_decode($_POST['data']) as $data) {
 }  ?>
 
 <script>
-    $('#sel-semester, #sel-semester-update').find('option').get(0).remove();
+    $('#sel-semester').find('option').get(0).remove();
+    $('#sel-semester-update').find('option').get(0).remove();
 </script>

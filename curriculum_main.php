@@ -13,10 +13,10 @@
                         <select id="option-courses" class="form-select form-select-sm w-100 mb-2"></select>
                     </td>
                 </tr>
-                <tr class="tr-major-to-hide">
+                <tr class="hide-major-select">
                     <td>Major</td>
                 </tr>
-                <tr class="tr-major-to-hide">
+                <tr class="hide-major-select">
                     <td><select id="sel-majors" class="form-select form-select-sm"></select></td>
                 </tr>
             </table>
@@ -28,7 +28,7 @@
                 <thead>
                     <th></th>
                     <th class="text-start">Curriculum Description</th>
-                    <th class="text-start">Effec. AY & Sem</th>
+                    <!-- <th class="text-start">Effec. AY & Sem</th> -->
                     <th colspan="2"></th>
                 </thead>
                 <tbody id="tbody-curriculum"></tbody>
@@ -104,7 +104,7 @@
                             <label>Curriculum Description</label>
                             <input id="txt-curriculum-description" class="form-control form-control-sm mb-3">
                         </div>
-                        <div class="col-6">
+                        <!-- <div class="col-6">
                             <label>Effectivity School Year</label>
                             <select id="sel-school-year" class="form-select form-select-sm">
                             </select>
@@ -113,7 +113,7 @@
                             <label>Effectivity Semester</label>
                             <select id="sel-semester" class="form-select form-select-sm">
                             </select>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -135,7 +135,7 @@
                             <label>Curriculum Description</label>
                             <input id="txt-curriculum-description-update" class="form-control form-control-sm mb-3">
                         </div>
-                        <div class="col-6">
+                        <!-- <div class="col-6">
                             <label>Effectivity School Year</label>
                             <select id="sel-school-year-update" class="form-select form-select-sm">
                             </select>
@@ -144,7 +144,7 @@
                             <label>Effectivity Semester</label>
                             <select id="sel-semester-update" class="form-select form-select-sm">
                             </select>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <div class="modal-footer" id="modal-footer-edit-curriculum">
