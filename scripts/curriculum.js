@@ -60,6 +60,21 @@ function addCurriculum() {
     })
 }
 
+function addPreRequisite(CurriculumSubjectID, index) {
+    $.post('/registry/curriculum/curriculum/actions/pre-requisite/add.php', {
+        CurriculumSubjectID: CurriculumSubjectID,
+        CourseNumber: $(`#sel-pre-requisites${index}`).val(),
+
+    }, (message) => {
+        if (message == `success`) {
+            modal_alert('Pre requisite added', "success", 5000)
+            getCurriculumSubjects(CurriculumID)
+            return
+        }
+        modal_alert(message, "danger", 2000);
+    })
+}
+
 function updateCurriculum(CurriculumID) {
     if ($('#sel-year-level').val() == "All Year Level") {
         modal_alert('Error: School Year is All Year Levels', "danger", 5000);

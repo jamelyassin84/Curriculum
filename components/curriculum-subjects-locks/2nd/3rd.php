@@ -1,6 +1,6 @@
  <tr>
      <td colspan="9" class="text-primary">
-         <h6 class="mb-0 mt-2">2nd Year - 1st Semester </h6>
+         <h6 class="mb-0 mt-2">2nd Year - 3rd Semester </h6>
      </td>
  </tr>
  <?php
@@ -48,19 +48,6 @@
         }
     } ?>
  <script>
-     function addPreRequisite(CurriculumSubjectID, CourseNumber) {
-         $.post('/registry/curriculum/curriculum/actions/pre-requisite/add.php', {
-             CurriculumSubjectID: CurriculumSubjectID,
-             CourseNumber: $('#sel-pre-requisites').val(),
-         }, (message) => {
-             if (message == `success`) {
-                 modal_alert('Pre requisite added', "success", 5000)
-                 getCurriculumSubjects(CurriculumID)
-                 return
-             }
-             modal_alert(message, "danger", 2000);
-         })
-     }
      $('#lock-curriculum').css('display', 'none')
      $('.bi bi-pencil, .bi bi-trash').css('display', 'none')
  </script>
