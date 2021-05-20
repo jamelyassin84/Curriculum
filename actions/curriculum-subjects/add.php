@@ -3,15 +3,15 @@
 include('../../../../../connection.php');
 
 $statement = $conn->prepare(
-    "SELECT  `CourseNumber` from  _tblcurriculum_subject 
-    where `CourseNumber` = ?  and CurriculumID = ?");
+    "SELECT  `SubjectID` from  _tblcurriculum_subject 
+    where `SubjectID` = ?  and CurriculumID = ?");
 $statement->execute([ 
-    $_POST['CourseNumber'],
+    $_POST['SubjectID'],
     $_POST['CurriculumID'],
 ]);
 
 if (count($statement->fetchAll(PDO::FETCH_ASSOC)) != 0) {
-    echo "Error: Duplicate Subject";
+    echo "Error: Subject already exists on this curriculum";
     return;
 }
 
@@ -35,13 +35,13 @@ try {
             `CurriculumID`,
             `YearLevel`,
             `Semester`,
-            `CourseNumber`
+            `SubjectID`
         ) VALUES (?,?,?,?)';
     $conn->prepare($statement)->execute([
         $_POST['CurriculumID'],
         $_POST['YearLevel'],
         $_POST['Semester'],
-        $_POST['CourseNumber'],
+        $_POST['SubjectID'],
     ]);
     $conn->commit();
     echo 'success';

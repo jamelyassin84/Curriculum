@@ -10,6 +10,7 @@
               <i class="bi <?= $data->Posted == 1 ? 'bi-lock-fill' : ' bi-unlock-fill' ?> "></i>
           </td>
           <td><?= $data->CurriculumDescription ?></td>
+          <td><?= $data->EffectiveAY ?></td>
           <td><i style="display:<?= $data->Posted == 1 ? 'none' : 'block' ?>" data-bs-toggle="modal" data-bs-target="#edit-curriculum" onclick="editCurriculum(
               '<?= $data->CurriculumID ?>',
               '<?= $data->CurriculumDescription ?>',
@@ -27,6 +28,7 @@
               `<button onclick="updateCurriculum(${CurriculumID})" type="button" class="btn btn-primary btn-sm">Update Curriculum</button>`
           )
           $('#txt-curriculum-description-update').val(CurriculumDescription)
+          $('#sel-school-year1').val(EffectiveAY)
       }
       $(`#tr-curriculum${tRToHighlight}`).click().addClass("highlight");
       $('#tbody-curriculum tr').on('click', function() {

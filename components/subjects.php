@@ -8,3 +8,7 @@ foreach (json_decode($_POST['data']) as $data) { ?>
     </tr>
 <?php $index += 1;
 } ?>
+
+<script>
+    $('.bi-chevron-left').css('display', Posted == 1 ? 'none' : 'block')
+</script>

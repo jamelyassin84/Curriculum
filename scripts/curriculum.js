@@ -7,7 +7,7 @@ async function getCurriculums() {
     $('#tbody-curriculum').html('')
     $('#tbody-curriculum-subjects').html("")
     const filter = {
-        MajorCode: $('#sel-majors').val(),
+        MajorCode: $('#sel-majors').val() == null || $('#sel-majors').val() == "" ? null : $('#sel-majors').val(),
         CourseCode: CourseCode,
         LocationCode: $('#cbo-locationcode').val()
     }
@@ -39,10 +39,10 @@ function addCurriculum() {
         modal_alert('Error: School Year is All Year Levels', "danger", 5000);
     }
     const curriculum = {
-        CourseCode: $('#option-courses').val(),
-        MajorCode: $('#sel-majors').val() == "" ? null : $('#sel-majors').val(),
+        CourseCode: $('#option-courses1').val(),
+        MajorCode: $('#sel-majors1').val() == "" ? null : $('#sel-majors1').val(),
         CurriculumDescription: $('#txt-curriculum-description').val(),
-        EffectiveAY: 2021 - 2022,
+        EffectiveAY: $('#sel-school-year').val(),
         EffectiveSemester: 'First',
         LocationCode: $('#cbo-locationcode').val(),
         isActive: 1,
@@ -60,20 +60,7 @@ function addCurriculum() {
     })
 }
 
-function addPreRequisite(CurriculumSubjectID, index) {
-    $.post('/registry/curriculum/curriculum/actions/pre-requisite/add.php', {
-        CurriculumSubjectID: CurriculumSubjectID,
-        CourseNumber: $(`#sel-pre-requisites${index}`).val(),
 
-    }, (message) => {
-        if (message == `success`) {
-            modal_alert('Pre requisite added', "success", 5000)
-            getCurriculumSubjects(CurriculumID)
-            return
-        }
-        modal_alert(message, "danger", 2000);
-    })
-}
 
 function updateCurriculum(CurriculumID) {
     if ($('#sel-year-level').val() == "All Year Level") {
@@ -81,7 +68,7 @@ function updateCurriculum(CurriculumID) {
     }
     const curriculum = {
         CurriculumDescription: $('#txt-curriculum-description-update').val(),
-        EffectiveAY: 2021 - 2022,
+        EffectiveAY: $('#sel-school-year-update').val(),
         EffectiveSemester: 'First',
         LocationCode: $('#cbo-locationcode').val(),
         CurriculumID: CurriculumID,
@@ -100,7 +87,7 @@ function updateCurriculum(CurriculumID) {
 
 function deleteCurriculum(id) {
     modal_confirm(
-        `confirmDeleteCurriculum(${id})`,
+        `confirmDeleteCurriculum(${ id })`,
         'btndisabled("false", "btnPost")',
         'Are you sure you want to delete this curriculum?',
         'confirm'

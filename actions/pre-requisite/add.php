@@ -4,11 +4,11 @@ include('../../../../../connection.php');
 
 $statement = $conn->prepare(
     "SELECT  `RecordID` from  _tblcurriculum_subject_prerequisites 
-    where `CurriculumSubjectID` = ?  and CourseNumber = ?"
+    where `CurriculumSubjectID` = ?  and SubjectID = ?"
 );
 $statement->execute([
     $_POST['CurriculumSubjectID'],
-    $_POST['CourseNumber'],
+    $_POST['SubjectID'],
 ]);
 
 if (count($statement->fetchAll(PDO::FETCH_ASSOC)) != 0) {
@@ -20,11 +20,11 @@ try {
     $conn->beginTransaction();
     $statement = 'INSERT INTO `_tblcurriculum_subject_prerequisites` ( 
             `CurriculumSubjectID`,
-            `CourseNumber`
+            `SubjectID`
         ) VALUES (?,?)';
     $conn->prepare($statement)->execute([
         $_POST['CurriculumSubjectID'],
-        $_POST['CourseNumber'],
+        $_POST['SubjectID'],
     ]);
     $conn->commit();
     echo 'success';
